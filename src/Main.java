@@ -1,15 +1,51 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+import repository.ExpenseRepository;
+import service.ExpenseService;
+
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
+        Scanner sc = new Scanner(System.in);
+
+        final ExpenseRepository expenseRepository = new ExpenseRepository();
+        final ExpenseService expenseService = new ExpenseService(expenseRepository);
+
+        while(true) {
+
+            int choice = sc.nextInt();
+
+            System.out.println("""
+                    1. Show expenses
+                    2. Sort by category
+                    3. Add new expense
+                    4. Get total amount
+                    0. Exiting
+                    """);
+
+            switch (choice){
+                case 1 -> showExpenses(expenseService);
+                case 2 -> sortByCategory(expenseService);
+                case 3 -> addNewExpense(expenseService);
+                case (0) -> {
+                    System.out.println("Exiting");
+                    return;
+                }
+            }
         }
+    }
+
+    private static void addNewExpense(ExpenseService service) {
+        throw new UnsupportedOperationException();
+
+    }
+
+    private static void sortByCategory(ExpenseService service) {
+        throw new UnsupportedOperationException();
+
+    }
+
+    public static void showExpenses(ExpenseService service){
+        throw new UnsupportedOperationException();
     }
 }

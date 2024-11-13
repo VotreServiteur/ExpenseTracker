@@ -1,17 +1,21 @@
 package model;
 
-public class Category {
-    private String name;
+public enum ExpenseCategory {
+    FOOD("Food"),
+    TRANSPORT("Transport"),
+    HEALTH("Health"),
+    HOME("Home");
+    private String nameOfCategory;
 
-    public Category(String name){
-        setName(name);
+    ExpenseCategory(String nameOfCategory) {
+        setNameOfCategory(nameOfCategory);
     }
 
-    public String getName() {
-        return name;
+    public String getNameOfCategory() {
+        return nameOfCategory;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNameOfCategory(String nameOfCategory) {
+        this.nameOfCategory = nameOfCategory;
     }
 }
