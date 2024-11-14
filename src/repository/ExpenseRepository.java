@@ -1,6 +1,7 @@
 package repository;
 
 import model.Expense;
+import model.ExpenseCategory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +17,7 @@ public class ExpenseRepository implements ExpenseRepositoryInterface{
         this.expenses = new ArrayList<>();
     }
 
-    private double getTotalAmount(){
+    public double getTotalAmount(){
         double sumOfExpenses = 0;
         assert this.expenses != null;
         for (var expense: this.expenses){
@@ -36,7 +37,13 @@ public class ExpenseRepository implements ExpenseRepositoryInterface{
     }
 
     @Override
-    public List<Expense> findByCategory() {
-        throw new UnsupportedOperationException();
+    public List<Expense> findByCategory(ExpenseCategory category) {
+        var expByCat = new ArrayList<Expense>();
+        for (Expense e: this.expenses){
+            if (e.getCategory().equals(category)){
+                expByCat.add(e);
+            }
+        }
+        return expByCat;
     }
 }

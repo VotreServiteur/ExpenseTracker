@@ -3,12 +3,13 @@ package model;
 public class Expense {
     private double amount;
     private ExpenseCategory category;
+    private String description;
 
-    public Expense(double valueOfExpense, ExpenseCategory category){
+    public Expense(double valueOfExpense, ExpenseCategory category, String description){
         setAmount(valueOfExpense);
         setCategory(category);
+        setDescription(description);
     }
-
 
     public double getAmount() {
         return amount;
@@ -24,5 +25,13 @@ public class Expense {
 
     public void setCategory(ExpenseCategory category) {
         this.category = category;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
