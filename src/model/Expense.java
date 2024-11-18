@@ -11,6 +11,11 @@ public class Expense {
         setDescription(description);
     }
 
+    @Override
+    public String toString(){
+        return getCategory().getNameOfCategory() + " " + getAmount() + " " + getDescription();
+    }
+
     public double getAmount() {
         return amount;
     }
