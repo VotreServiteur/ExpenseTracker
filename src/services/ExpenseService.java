@@ -1,10 +1,13 @@
-package service;
+package services;
 
+import factory.ExpenseFactory;
 import model.Expense;
 import model.ExpenseCategory;
 import repository.ExpenseRepository;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.Scanner;
 
 public class ExpenseService implements ExpenseServiceInterface {
 
@@ -19,8 +22,10 @@ public class ExpenseService implements ExpenseServiceInterface {
     }
 
     @Override
-    public void addExpense(Expense expense) {
-        expenseRepository.save(expense);
+    public void addExpense(Scanner sc) {
+        var expenseFactory = new ExpenseFactory(sc);
+        Optional<Expense> expense = expenseFactory.getNewExpense();
+        expense.ifPresent(expenseRepository::save);
     }
 
     @Override
@@ -33,8 +38,4 @@ public class ExpenseService implements ExpenseServiceInterface {
         return expenseRepository.findByCategory(category);
     }
 
-    @Override
-    public Expense createExpense(double amount, ExpenseCategory category, String description) {
-        return new Expense(amount,category,description);
-    }
 }
