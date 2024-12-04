@@ -33,14 +33,11 @@ public class ExpenseUpdater implements ExpenseUpdaterInterface{
                     2.Description
                     3.Category
                     0.Nothing
-                    :""");
+                    """);
             var option = Integer.parseInt(sc.nextLine());
             switch (option){
                 case 1 -> expense.setAmount(validator.getValidAmount());
-                case 2 -> {
-                    //sc.();
-                    expense.setDescription(validator.getValidDescription());
-                }
+                case 2 -> expense.setDescription(validator.getValidDescription());
                 case 3 -> expense.setCategory(validator.getValidCategory());
                 case 0 -> {
                     return;
@@ -58,9 +55,8 @@ public class ExpenseUpdater implements ExpenseUpdaterInterface{
                     Want to rewrite?:
                     1.Yes
                     2.No
-                    :""");
+                    """);
             var option = Integer.parseInt(sc.nextLine());
-            //sc.next();
             switch (option){
                 case 1 -> {
                     return true;

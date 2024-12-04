@@ -38,7 +38,7 @@ public class ExpenseFactory {
                     1.Yes
                     2.No
                     3.Cancel
-                    :""");
+                    """);
             var option = Integer.parseInt(sc.nextLine());
             switch (option){
                 case 1 -> {
