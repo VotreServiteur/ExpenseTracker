@@ -20,7 +20,7 @@ public class ExpenseReaderService {
             String line;
             String[] expense;
             while((line = br.readLine()) != null){
-                expense = line.split(" ");
+                expense = line.split("\\|");
                 double amount = Double.parseDouble(expense[0]);
                 ExpenseCategory category = ExpenseCategory.getExpenseByName(expense[1]);
                 String description = expense[2];

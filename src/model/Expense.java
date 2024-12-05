@@ -13,7 +13,7 @@ public class Expense {
 
     @Override
     public String toString(){
-        return getAmount() + " " + getCategory().getNameOfCategory() + " " + getDescription();
+        return getAmount() + "|" + getCategory().getNameOfCategory() + "|" + getDescription();
     }
 
     public double getAmount() {

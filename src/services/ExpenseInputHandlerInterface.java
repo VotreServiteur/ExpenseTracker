@@ -2,7 +2,7 @@ package services;
 
 import model.ExpenseCategory;
 
-public interface InputValidatorInterface {
+public interface ExpenseInputHandlerInterface {
     double getValidAmount();
     String getValidDescription();
     ExpenseCategory getValidCategory();

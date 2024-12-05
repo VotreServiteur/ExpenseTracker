@@ -1,25 +1,22 @@
 package factory;
 
+import io.InputHandler;
 import model.Expense;
 import services.ExpenseUpdater;
-import services.InputValidator;
-import util.CategoryChooser;
+
 import java.util.Optional;
-import java.util.Scanner;
 
 public class ExpenseFactory {
-    private final Scanner sc;
-    private final InputValidator validator;
+    private final InputHandler input;
 
-    public ExpenseFactory(Scanner sc){
-        this.sc = sc;
-        validator = new InputValidator(sc);
+    public ExpenseFactory(InputHandler input){
+        this.input = input;
     }
 
     public Optional<Expense> getNewExpense() {
-        double amount = validator.getValidAmount();
-        String description = validator.getValidDescription();
-        var category = CategoryChooser.chooseCategory(sc);
+        double amount = input.getValidAmount();
+        String description = input.getValidDescription();
+        var category = input.getValidCategory();
 
         Expense expense = new Expense(amount, category, description);
 
@@ -39,13 +36,13 @@ public class ExpenseFactory {
                     2.No
                     3.Cancel
                     """);
-            var option = Integer.parseInt(sc.nextLine());
+            var option = input.askAboutValidity(expense);
             switch (option){
                 case 1 -> {
                     return Optional.of(expense);
                 }
                 case 2 -> {
-                    var updater = new ExpenseUpdater(sc);
+                    var updater = new ExpenseUpdater(input);
                     return updater.getUpdatedExpense(expense);
                 }
                 case 3 -> {

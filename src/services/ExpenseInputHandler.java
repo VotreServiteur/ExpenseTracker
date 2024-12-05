@@ -6,10 +6,10 @@ import util.CategoryChooser;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class InputValidator implements InputValidatorInterface {
+public class ExpenseInputHandler implements ExpenseInputHandlerInterface {
     private final Scanner sc;
 
-    public InputValidator(Scanner sc) {
+    public ExpenseInputHandler(Scanner sc) {
         this.sc = sc;
     }
 
