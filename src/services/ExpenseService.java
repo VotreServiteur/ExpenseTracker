@@ -1,13 +1,13 @@
 package services;
 
 import factory.ExpenseFactory;
+import io.InputHandler;
 import model.Expense;
 import model.ExpenseCategory;
 import repository.ExpenseRepository;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.Scanner;
 
 public class ExpenseService implements ExpenseServiceInterface {
 
@@ -22,8 +22,8 @@ public class ExpenseService implements ExpenseServiceInterface {
     }
 
     @Override
-    public void addExpense(Scanner sc) {
-        var expenseFactory = new ExpenseFactory(sc);
+    public void addExpense(InputHandler input) {
+        var expenseFactory = new ExpenseFactory(input);
         Optional<Expense> expense = expenseFactory.getNewExpense();
         expense.ifPresent(expenseRepository::save);
     }
