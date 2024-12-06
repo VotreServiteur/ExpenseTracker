@@ -24,14 +24,6 @@ public class ExpenseUpdater implements ExpenseUpdaterInterface{
     @Override
     public void chooseOptionToRewrite(Expense expense) {
         while(true){
-            System.out.println("\n" + expense.toString());
-            System.out.print("""
-                    Choose option to rewrite
-                    1.Amount
-                    2.Description
-                    3.Category
-                    0.Nothing
-                    """);
             var option = input.askOptionToRewrite(expense);
             switch (option){
                 case 1 -> expense.setAmount(input.getValidAmount());
@@ -47,23 +39,6 @@ public class ExpenseUpdater implements ExpenseUpdaterInterface{
 
     @Override
     public boolean isNecessaryToRewriteExpense(){
-        while(true) {
-            System.out.print("""
-                    
-                    Want to rewrite?:
-                    1.Yes
-                    2.No
-                    """);
-            var option = input.necessaryToRewriteOption();
-            switch (option){
-                case 1 -> {
-                    return true;
-                }
-                case 2 -> {
-                    return false;
-                }
-                default -> System.out.println("Choose correct option");
-            }
-        }
+        return input.askIfNecessaryToRewrite();
     }
 }

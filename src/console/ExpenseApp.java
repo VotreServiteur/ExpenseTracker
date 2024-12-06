@@ -21,42 +21,25 @@ public class ExpenseApp {
             case true -> expenseService = loadExpensesFromFile();
             case false -> expenseService = new ExpenseService(new ExpenseRepository());
         }
-
         while(true) {
             var option = input.getMenuOption();
-
             switch (option){
-                case 1 -> showExpenses(expenseService);
-                case 2 -> sortByCategory(expenseService);
+                case 1 -> showExpenses();
+                case 2 -> sortByCategory();
                 case 3 -> expenseService.addExpense(input);
                 case 4 -> System.out.println("Total amount is " + expenseService.getTotalAmount());
-                case 5 -> saveExpenses(expenseService);
+                case 5 -> saveExpenses();
                 case 0 -> {
-                    saveExpenses(expenseService);
+                    saveExpenses();
                     return;
                 }
             }
         }
     }
 
-    private void saveExpenses(ExpenseService expenseService) {
-        boolean isAnswerChecked = false;
-        while(!isAnswerChecked){
-            System.out.print("""
-                    Save expenses to file?
-                    1. Yes
-                    2. No
-                    """);
-
-            var option = input.askToSaveExpenses();
-            switch (option){
-                case true -> {
-                    ExpenseWriterService.writeExpensesToFile(expenseService.getAllExpenses());
-                    isAnswerChecked = true;
-                }
-                case false -> isAnswerChecked = true;
-            }
-        }
+    private void saveExpenses() {
+        var option = input.askToSaveExpenses();
+        if (option) ExpenseWriterService.writeExpensesToFile(expenseService.getAllExpenses());
     }
 
     private ExpenseService loadExpensesFromFile(){
@@ -64,9 +47,9 @@ public class ExpenseApp {
         return new ExpenseService(expenseRepository);
     }
 
-    private void sortByCategory(ExpenseService service) {
+    private void sortByCategory() {
         ExpenseCategory category = input.getValidCategory();
-        var expByCat = service.getExpensesByCategory(category);
+        var expByCat = expenseService.getExpensesByCategory(category);
         if (!expByCat.isEmpty())
             for (var exp: expByCat){
                 System.out.println(exp.toString());
@@ -74,13 +57,13 @@ public class ExpenseApp {
         else System.out.println("There is no expenses in this category.");
     }
 
-    private void showExpenses(ExpenseService service) {
-        var expenses = service.getAllExpenses();
+    private void showExpenses() {
+        var expenses = expenseService.getAllExpenses();
         if (!expenses.isEmpty()) {
             for (Expense exp : expenses) {
                 System.out.println(exp.toString());
             }
-            System.out.println(service.getTotalAmount());
+            System.out.println(expenseService.getTotalAmount());
         }else System.out.println("There is no expenses.");
     }
 

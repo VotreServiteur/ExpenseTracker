@@ -11,9 +11,9 @@ public interface InputHandlerInterface {
 
     boolean askToSaveExpenses();
 
-    int askOptionToRewrite();
+    int askOptionToRewrite(Expense expense);
 
-    int necessaryToRewriteOption();
+    boolean askIfNecessaryToRewrite();
 
     double getValidAmount();
 
@@ -23,6 +23,7 @@ public interface InputHandlerInterface {
 
     int askAboutValidity(Expense expense);
 
+    boolean yesOrNoQuestion(String question);
 
-
+    int chooseOptionQuestion(String question, int min, int max);
 }

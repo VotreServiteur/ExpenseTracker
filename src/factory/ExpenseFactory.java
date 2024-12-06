@@ -17,38 +17,18 @@ public class ExpenseFactory {
         double amount = input.getValidAmount();
         String description = input.getValidDescription();
         var category = input.getValidCategory();
-
         Expense expense = new Expense(amount, category, description);
-
-        while (true){
-            System.out.print("""
-                    Expense:
-                        amount:\s"""
-                        + amount +
-                    "\n\tdescription: "
-                        + description +
-                    "\n\tcategory: " +
-                        category.getNameOfCategory() +
-                    """
-                    \n
-                    Is it correct?
-                    1.Yes
-                    2.No
-                    3.Cancel
-                    """);
-            var option = input.askAboutValidity(expense);
-            switch (option){
-                case 1 -> {
-                    return Optional.of(expense);
-                }
-                case 2 -> {
-                    var updater = new ExpenseUpdater(input);
-                    return updater.getUpdatedExpense(expense);
-                }
-                case 3 -> {
-                    return Optional.empty();
-                }
-                default -> System.out.println("Choose correct option");
+        var option = input.askAboutValidity(expense);
+        switch (option){
+            case 1 -> {
+                return Optional.of(expense);
+            }
+            case 2 -> {
+                var updater = new ExpenseUpdater(input);
+                return updater.getUpdatedExpense(expense);
+            }
+            default -> {
+                return Optional.empty();
             }
         }
     }
